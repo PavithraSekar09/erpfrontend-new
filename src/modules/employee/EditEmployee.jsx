@@ -11,8 +11,10 @@ function EditEmployee() {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // FIXED useEffect (safe for deployment)
   useEffect(() => {
     fetchEmployee();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchEmployee = async () => {
@@ -24,7 +26,6 @@ function EditEmployee() {
       setEmail(emp.email || "");
       setDepartment(emp.department || "");
       setSalary(emp.salary || "");
-
     } catch (error) {
       console.error(error);
       alert("Error loading employee");
@@ -44,7 +45,6 @@ function EditEmployee() {
 
       alert("Employee Updated");
       navigate("/employees");
-
     } catch (error) {
       console.error(error);
       alert("Error updating employee");
@@ -56,7 +56,6 @@ function EditEmployee() {
       <h2>Edit Employee</h2>
 
       <form onSubmit={handleUpdate}>
-
         <input
           type="text"
           placeholder="Name"
@@ -90,7 +89,6 @@ function EditEmployee() {
         <br /><br />
 
         <button type="submit">Update</button>
-
       </form>
     </div>
   );

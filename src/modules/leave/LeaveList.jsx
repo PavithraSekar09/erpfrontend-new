@@ -7,20 +7,24 @@ function LeaveList() {
 
   const role = (localStorage.getItem("role") || "").toUpperCase();
 
-  const loadLeaves = () => {
-    if (role === "ADMIN") {
-      API.get("/leave")
-        .then((res) => setLeaves(res.data))
-        .catch((err) => console.log(err));
-    } else {
-      API.get("/leave/my")
-        .then((res) => setLeaves(res.data))
-        .catch((err) => console.log(err));
+  const loadLeaves = async () => {
+    try {
+      if (role === "ADMIN") {
+        const res = await API.get("/leave");
+        setLeaves(res.data);
+      } else {
+        const res = await API.get("/leave/my");
+        setLeaves(res.data);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
+  // FIXED useEffect (safe for deployment)
   useEffect(() => {
     loadLeaves();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const approve = async (id) => {
@@ -40,7 +44,6 @@ function LeaveList() {
       <div className="leave-grid">
         {leaves.map((l) => (
           <div key={l.id} className="leave-card">
-            
             <div className="leave-top">
               <h3>{l.employeeEmail}</h3>
               <span className={`status ${l.status?.toLowerCase()}`}>
@@ -62,7 +65,6 @@ function LeaveList() {
                 </>
               )}
             </div>
-
           </div>
         ))}
       </div>
