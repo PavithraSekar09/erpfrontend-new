@@ -1,0 +1,30 @@
+.app-layout {
+  /* ❌ remove flex when using fixed sidebar */
+  min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 240px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #111827;
+  color: white;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* MAIN CONTENT */
+.main-content {
+  margin-left: 240px;   /* ✔ correct offset */
+  min-height: 100vh;
+  padding: 20px;
+  background: #f3f4f6;
+
+  /* ❌ remove this (causes gap/overflow issues) */
+  /* width: calc(100% - 240px); */
+
+  transition: all 0.3s ease;
+}

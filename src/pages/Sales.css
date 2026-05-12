@@ -1,0 +1,217 @@
+/* Sales.css */
+
+.sales-container {
+  padding: 25px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Heading */
+.sales-container h2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 25px;
+}
+
+/* Summary Cards */
+.sales-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.sales-card {
+  padding: 22px;
+  border-radius: 18px;
+  color: white;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  transition: 0.3s ease;
+}
+
+.sales-card:hover {
+  transform: translateY(-5px);
+}
+
+.sales-card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.sales-card p {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+}
+
+.green {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.orange {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+
+/* Form */
+.sales-form {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  padding: 22px;
+  border-radius: 18px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.sales-form input,
+.sales-form select {
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #dbe3f0;
+  font-size: 14px;
+  outline: none;
+}
+
+.sales-form input:focus,
+.sales-form select:focus {
+  border-color: #3b82f6;
+}
+
+.sales-form button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.sales-form button:hover {
+  transform: scale(1.03);
+}
+
+/* Date Filter */
+.date-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+
+.date-filter label {
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.date-filter input {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid #dbe3f0;
+}
+
+.date-filter button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #64748b;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.date-filter button:hover {
+  background: #475569;
+}
+
+/* Table */
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+.sales-table th {
+  background: #1e293b;
+  color: white;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.sales-table td {
+  padding: 13px;
+  text-align: center;
+  border-bottom: 1px solid #eef2f7;
+  color: #334155;
+}
+
+.sales-table tr:hover {
+  background: #f8fafc;
+}
+
+/* Status */
+.done {
+  background: #dcfce7;
+  color: #15803d;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #b45309;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.cancel {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sales-container {
+    padding: 15px;
+  }
+
+  .sales-container h2 {
+    font-size: 24px;
+  }
+
+  .sales-form {
+    grid-template-columns: 1fr;
+  }
+
+  .date-filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sales-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

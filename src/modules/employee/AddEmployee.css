@@ -1,0 +1,68 @@
+.add-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f3f4f6;
+  font-family: "Poppins", sans-serif;
+}
+
+/* CARD */
+.add-card {
+  width: 420px;
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+/* TITLE */
+.add-card h2 {
+  margin-bottom: 5px;
+  color: #111827;
+}
+
+.sub-text {
+  color: #6b7280;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+/* INPUTS */
+.add-card input,
+.add-card select {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  font-size: 14px;
+  transition: 0.3s;
+  background: white;
+}
+
+/* FOCUS EFFECT */
+.add-card input:focus,
+.add-card select:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+/* BUTTON */
+.add-card button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg,#3b82f6,#2563eb);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.add-card button:hover {
+  transform: translateY(-2px);
+}

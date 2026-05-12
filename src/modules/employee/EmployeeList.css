@@ -1,0 +1,122 @@
+.emp-container {
+  padding: 25px;
+  background: #f3f4f6;
+  min-height: 100vh;
+  font-family: "Poppins", sans-serif;
+}
+
+/* HEADER */
+.emp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.emp-header h2 {
+  font-size: 26px;
+  color: #111827;
+}
+
+.add-btn {
+  background: linear-gradient(135deg,#3b82f6,#2563eb);
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* TABLE WRAPPER */
+.table-wrapper {
+  background: white;
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  overflow-x: auto;
+}
+
+/* TABLE */
+.emp-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* HEAD */
+.emp-table thead {
+  background: #111827;
+  color: white;
+}
+
+.emp-table th,
+.emp-table td {
+  padding: 14px;
+  text-align: left;
+}
+
+/* ROW */
+.emp-table tbody tr {
+  border-bottom: 1px solid #e5e7eb;
+  transition: 0.2s;
+}
+
+.emp-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+/* NAME */
+.name-cell {
+  font-weight: 600;
+  color: #111827;
+}
+
+/* DEPARTMENT BADGE */
+.dept-badge {
+  background: #dbeafe;
+  color: #2563eb;
+  padding: 5px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* SALARY */
+.salary {
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* ACTION BUTTONS */
+.action-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-btn {
+  background: #f59e0b;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.delete-btn {
+  background: #ef4444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  transform: scale(1.05);
+}

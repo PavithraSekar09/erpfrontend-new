@@ -1,0 +1,115 @@
+.finance-container {
+  padding: 25px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+.finance-container h2 {
+  margin-bottom: 20px;
+  color: #1e293b;
+}
+
+.finance-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.card {
+  padding: 20px;
+  border-radius: 14px;
+  color: white;
+  box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.card.blue {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.card.green {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.card.red {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+}
+
+.asset-form-box {
+  background: white;
+  padding: 20px;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.asset-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.asset-form input,
+.asset-form select {
+  padding: 10px;
+  border: 1px solid #dbeafe;
+  border-radius: 8px;
+}
+
+.asset-form button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.asset-form button:hover {
+  background: #1d4ed8;
+}
+
+.finance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.finance-table th {
+  background: #2563eb;
+  color: white;
+}
+
+.finance-table th,
+.finance-table td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.finance-table tr:hover {
+  background: #f8fafc;
+}
+
+.delete-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}

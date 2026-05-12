@@ -1,0 +1,128 @@
+.leave-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #e0f2fe, #f8fafc);
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Glass card effect */
+.leave-box {
+  width: 460px;
+  padding: 28px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
+}
+
+/* Header */
+.leave-top h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.leave-top p {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Textarea */
+.input-section {
+  margin-top: 18px;
+}
+
+textarea {
+  width: 100%;
+  height: 140px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  outline: none;
+  resize: none;
+  font-size: 14px;
+  transition: 0.2s;
+  background: #fff;
+}
+
+textarea:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 4px rgba(59,130,246,0.1);
+}
+
+/* Counter */
+.meta-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.warn {
+  color: #ef4444;
+}
+
+/* Toast message */
+.toast {
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  animation: fadeIn 0.3s ease;
+}
+
+.toast.success {
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #86efac;
+}
+
+.toast.error {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(37,99,235,0.25);
+}
+
+.btn:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
