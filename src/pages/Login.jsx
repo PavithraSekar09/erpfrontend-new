@@ -32,7 +32,7 @@ function Login() {
       setLoading(true);
 
       const response = await axios.post(
-        "https://ercomp-backend-4-9jw8.onrender./api/auth/login",
+        "https://erp-backend-4-9jw8.onrender.com/api/auth/login",
         {
           email,
           password,
