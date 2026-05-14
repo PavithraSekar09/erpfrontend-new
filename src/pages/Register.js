@@ -28,7 +28,7 @@ function Register() {
     try {
       setLoading(true);
 
-      await axios.post("https://ercomp-backend-4-9jw8.onrender./api/auth/register", {
+      await axios.post("https://erp-backend-4-9jw8.onrender.com/api/auth/register", {
         email,
         password,
       });
