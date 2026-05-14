@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:8082/api"
+  baseURL: "https://erp-backend-4-9jw8.onrender.com/api"
 });
 
 // ✅ Auto attach token
