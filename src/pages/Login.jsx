@@ -32,15 +32,14 @@ function Login() {
       setLoading(true);
 
       const response = await axios.post(
-        "http://localhost:8082/api/auth/login",
+        "https://ercomp-backend-4-9jw8.onrender./api/auth/login",
         {
           email,
           password,
         }
       );
 
-      const token =
-        response.data.token || response.data;
+      const token = response.data.token || response.data;
 
       if (!token) {
         alert("Token not received");
@@ -65,16 +64,10 @@ function Login() {
 
     } catch (error) {
 
-      if (
-        error.response &&
-        error.response.status === 401
-      ) {
+      if (error.response && error.response.status === 401) {
         alert("Invalid Email or Password");
 
-      } else if (
-        error.response &&
-        error.response.status === 404
-      ) {
+      } else if (error.response && error.response.status === 404) {
         alert("Email is not registered");
 
       } else {
@@ -99,18 +92,14 @@ function Login() {
           type="email"
           placeholder="Email Address"
           value={email}
-          onChange={(e) =>
-            setEmail(e.target.value)
-          }
+          onChange={(e) => setEmail(e.target.value)}
         />
 
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) =>
-            setPassword(e.target.value)
-          }
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <button
@@ -123,9 +112,7 @@ function Login() {
 
         <p className="register">
           New user?
-          <span
-            onClick={() => navigate("/register")}
-          >
+          <span onClick={() => navigate("/register")}>
             Create Account
           </span>
         </p>

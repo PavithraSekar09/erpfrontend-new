@@ -28,7 +28,7 @@ function Register() {
     try {
       setLoading(true);
 
-      await axios.post("http://localhost:8082/api/auth/register", {
+      await axios.post("https://ercomp-backend-4-9jw8.onrender./api/auth/register", {
         email,
         password,
       });
