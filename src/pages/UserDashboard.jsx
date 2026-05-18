@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import API from "../../services/api";
 import "./UserDashboard.css";
 
 function UserDashboard() {
@@ -32,68 +32,115 @@ function UserDashboard() {
       return;
     }
 
-    const headers = {
-      Authorization: `Bearer ${token}`,
-    };
+    const loadDashboard = async () => {
+      try {
 
-    // =========================
-    // LEAVE COUNT
-    // =========================
-    axios.get("http://localhost:8082/api/leave/count", { headers })
-      .then((res) => setStats(res.data))
-      .catch(() => setError("Failed to load leave data"));
+        // =========================
+        // CURRENT DATE
+        // =========================
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
 
-    // =========================
-    // MONTHLY ATTENDANCE RATE
-    // =========================
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth() + 1;
+        // =========================
+        // API CALLS
+        // =========================
+        const [
+          leaveRes,
+          attendanceRateRes,
+          attendanceRes,
+          announcementRes,
+        ] = await Promise.all([
 
-    axios.get(
-      `http://localhost:8082/api/attendance/rate/month?year=${year}&month=${month}`,
-      { headers }
-    )
-    .then((res) => setAttendance(res.data.rate))
-    .catch((err) => console.log(err));
+          API.get("/leave/count"),
 
-    // =========================
-    // TODAY STATUS
-    // =========================
-    axios.get("http://localhost:8082/api/attendance/my", { headers })
-      .then((res) => {
+          API.get(
+            `/attendance/rate/month?year=${year}&month=${month}`
+          ),
+
+          API.get("/attendance/my"),
+
+          API.get("/announcements"),
+        ]);
+
+        // =========================
+        // SET LEAVE STATS
+        // =========================
+        setStats(leaveRes.data);
+
+        // =========================
+        // SET ATTENDANCE RATE
+        // =========================
+        setAttendance(attendanceRateRes.data.rate || 0);
+
+        // =========================
+        // TODAY ATTENDANCE
+        // =========================
         const today = new Date().toISOString().split("T")[0];
 
-        const todayRecord = res.data.find(
+        const todayRecord = attendanceRes.data.find(
           (a) => a.date === today
         );
 
         setTodayStatus(todayRecord || null);
-      })
-      .catch((err) => console.log(err));
 
-    // =========================
-    // ANNOUNCEMENTS
-    // =========================
-    axios.get("http://localhost:8082/api/announcements", { headers })
-      .then((res) => setAnnouncements(res.data))
-      .catch(() => setAnnouncements([]));
+        // =========================
+        // ANNOUNCEMENTS
+        // =========================
+        setAnnouncements(announcementRes.data);
 
-    setLoading(false);
+      } catch (err) {
+
+        console.log(err);
+        setError("Failed to load dashboard");
+
+      } finally {
+
+        setLoading(false);
+
+      }
+    };
+
+    loadDashboard();
 
   }, []);
 
+  // =========================
+  // TODAY DATE FORMAT
+  // =========================
   const today = new Date().toLocaleDateString("en-IN", {
     day: "numeric",
     month: "short",
     year: "numeric",
   });
 
+  // =========================
+  // DASHBOARD CARDS
+  // =========================
   const cards = [
-    { value: stats.total, label: "Total Leaves", class: "blue" },
-    { value: stats.pending, label: "Pending Leaves", class: "orange" },
-    { value: stats.approved, label: "Approved Leaves", class: "green" },
-    { value: `${attendance.toFixed(1)}%`, label: "Attendance Rate", class: "purple" },
+    {
+      value: stats.total,
+      label: "Total Leaves",
+      class: "blue",
+    },
+
+    {
+      value: stats.pending,
+      label: "Pending Leaves",
+      class: "orange",
+    },
+
+    {
+      value: stats.approved,
+      label: "Approved Leaves",
+      class: "green",
+    },
+
+    {
+      value: `${attendance.toFixed(1)}%`,
+      label: "Attendance Rate",
+      class: "purple",
+    },
   ];
 
   return (
@@ -101,73 +148,124 @@ function UserDashboard() {
 
       {/* HEADER */}
       <div className="top-header">
+
         <div>
           <h1>Welcome Back 👋</h1>
           <p>{userEmail}</p>
         </div>
 
-        <div className="date-box">{today}</div>
+        <div className="date-box">
+          {today}
+        </div>
+
       </div>
 
       {/* ERROR */}
-      {error && <p className="error">{error}</p>}
+      {error && (
+        <p className="error">{error}</p>
+      )}
 
       {/* STATS */}
       <div className="card-grid">
 
         {loading ? (
+
           <p>Loading dashboard...</p>
+
         ) : (
+
           cards.map((card, index) => (
-            <div key={index} className={`dash-card ${card.class}`}>
+
+            <div
+              key={index}
+              className={`dash-card ${card.class}`}
+            >
               <h2>{card.value}</h2>
               <p>{card.label}</p>
             </div>
+
           ))
+
         )}
 
       </div>
 
       {/* QUICK ACTIONS */}
       <div className="section">
+
         <h3>Quick Actions</h3>
 
         <div className="action-grid">
-          <Link to="/attendance">Mark Attendance</Link>
-          <Link to="/leave">Apply Leave</Link>
-          <Link to="/my-leaves">My Leaves</Link>
-          <Link to="/my-profile">My Profile</Link>
+
+          <Link to="/attendance">
+            Mark Attendance
+          </Link>
+
+          <Link to="/leave">
+            Apply Leave
+          </Link>
+
+          <Link to="/my-leaves">
+            My Leaves
+          </Link>
+
+          <Link to="/my-profile">
+            My Profile
+          </Link>
+
         </div>
+
       </div>
 
       {/* LOWER GRID */}
       <div className="bottom-grid">
 
-        {/* TODAY STATUS (FULL UPGRADED UI) */}
+        {/* TODAY STATUS */}
         <div className="panel today-card">
 
           <h3>Today Status</h3>
 
           {todayStatus ? (
+
             <div className="today-content">
 
+              {/* CHECK IN */}
               <div className="status-row">
-                <span className="label">Check In</span>
-                <span className="value">
-                  {todayStatus?.checkInTime
-                    ? new Date(todayStatus.checkInTime).toLocaleTimeString()
-                    : "-"}
+
+                <span className="label">
+                  Check In
                 </span>
+
+                <span className="value">
+
+                  {todayStatus?.checkInTime
+                    ? new Date(
+                        todayStatus.checkInTime
+                      ).toLocaleTimeString()
+                    : "-"}
+
+                </span>
+
               </div>
 
+              {/* STATUS */}
               <div className="status-row">
-                <span className="label">Status</span>
-                <span className={`badge ${todayStatus.status?.toLowerCase()}`}>
+
+                <span className="label">
+                  Status
+                </span>
+
+                <span
+                  className={`badge ${todayStatus.status?.toLowerCase()}`}
+                >
                   {todayStatus.status}
                 </span>
+
               </div>
 
+              {/* PROGRESS BAR */}
               <div className="progress-bar">
+
                 <div
                   className="progress-fill"
                   style={{
@@ -179,28 +277,44 @@ function UserDashboard() {
                         : "20%",
                   }}
                 />
+
               </div>
 
             </div>
+
           ) : (
+
             <div className="empty-state">
+
               <p>No attendance marked today</p>
+
             </div>
+
           )}
 
         </div>
 
         {/* ANNOUNCEMENTS */}
         <div className="panel">
+
           <h3>Announcements</h3>
 
           {announcements.length === 0 ? (
+
             <p>No announcements</p>
+
           ) : (
+
             announcements.map((a, i) => (
-              <p key={i}>📢 {a.message}</p>
+
+              <p key={i}>
+                📢 {a.message}
+              </p>
+
             ))
+
           )}
+
         </div>
 
       </div>
